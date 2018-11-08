@@ -15,9 +15,7 @@ class BadRequest(Exception):
         self.code = code
 
     def to_dict(self):
-        response = {}
-
-        response['code'] = self.code
-        response['status'] = self.status_code
-
-        return response
+        return {
+            'code': self.code,
+            'status': self.status_code,
+        }
