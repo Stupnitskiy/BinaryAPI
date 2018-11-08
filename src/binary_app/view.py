@@ -3,14 +3,15 @@ from flask import render_template, request, Blueprint
 from src import app
 
 from src.binary_app import serialize
+from src.binary_app import spec
+
+from src.lib.validate import wrap_validate 
 from src.lib.services import dropbox
 
 """
 TODO:
-    1) Validation for input data.
-    2) Download file from service.
-    3) Standard all error responses from service.
-    4) Write unit tests.
+    1) Standard all error responses from service.
+    2) Write unit tests.
 """
 
 binary_bp = Blueprint('binary_bp', __name__, url_prefix='/api/binary')
@@ -21,15 +22,21 @@ def get_list():
     return serialize.get_list(files)
 
 
+@binary_bp.route("/get/<string:key>", methods=['GET'])
+@wrap_validate(spec.get())
+def get(key):
+    return dropbox.download(key)
+
+
 @binary_bp.route("/put", methods=['PUT'])
+@wrap_validate(spec.put())
 def put():
     form = request.form
 
-    data = request.files.get('data')
-    key = form.get('key')
+    key = form['key']
+    data = form['data']
 
-    if not data or not key:
-        return ('Invalid fields', 404)
+    encoded_data = str.encode(data)
+    result = dropbox.upload(encoded_data, key)
 
-    result = dropbox.upload(data.read(), key)
     return serialize.put(result)

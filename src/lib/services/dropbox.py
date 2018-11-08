@@ -2,6 +2,9 @@ import dropbox
 
 from config import DROPBOX_ACCESS_TOKEN, DROPBOX_PROJECT_PATH
 
+"""
+This code was remaked from https://github.com/dropbox/dropbox-sdk-python/blob/master/example/updown.py
+"""
 
 # Create Dropbox API object. Needed for requests to Dropbox.
 dbx = dropbox.Dropbox(DROPBOX_ACCESS_TOKEN)
@@ -20,11 +23,11 @@ def list_folder():
     else:
         return res.entries
 
-def download(filename):
+def download(key):
     """Download a file.
     Return the bytes of the file, or None if it doesn't exist.
     """
-    path = '%s/%s' % (DROPBOX_PROJECT_PATH, filename)
+    path = '%s/%s' % (DROPBOX_PROJECT_PATH, key)
     while '//' in path:
         path = path.replace('//', '/')
     try:
