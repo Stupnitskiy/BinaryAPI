@@ -1,17 +1,23 @@
 from werkzeug.exceptions import HTTPException
 
 
+class Code():
+    VALIDATION_FAILED = 1
+    DOWNLOAD_FAILED = 2
+    UPLOAD_FAILED = 3
+
+
 class BadRequest(Exception):
     status_code = 400
 
-    def __init__(self, message):
+    def __init__(self, code):
         Exception.__init__(self)
-        self.message = message
+        self.code = code
 
     def to_dict(self):
         response = {}
 
+        response['code'] = self.code
         response['status'] = self.status_code
-        response['message'] = self.message
 
         return response

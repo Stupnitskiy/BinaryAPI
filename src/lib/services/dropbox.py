@@ -2,6 +2,8 @@ import dropbox
 
 from config import DROPBOX_ACCESS_TOKEN, DROPBOX_PROJECT_PATH
 
+from src.lib.errors import BadRequest, Code
+
 """
 This code was remaked from https://github.com/dropbox/dropbox-sdk-python/blob/master/example/updown.py
 """
@@ -33,7 +35,7 @@ def download(key):
     try:
         metadata, res = dbx.files_download(path)
     except dropbox.exceptions.HttpError as err:
-        return None
+        raise BadRequest(Code.DOWNLOAD_FAILED)
     data = res.content
     return data
 
@@ -55,6 +57,6 @@ def upload(file, key, overwrite=False):
             mute=True
         )
     except dropbox.exceptions.ApiError as err:
-        return None
+        raise BadRequest(Code.UPLOAD_FAILED)
 
     return res

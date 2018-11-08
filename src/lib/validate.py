@@ -4,7 +4,7 @@ from functools import wraps
 from flask import request
 
 from src.lib import update_dicts
-from src.lib.errors import BadRequest
+from src.lib.errors import BadRequest, Code
 
 
 def wrap_validate(schema):
@@ -16,7 +16,7 @@ def wrap_validate(schema):
             if is_valid(schema, args, kwargs):
                 return f(*args, **kwargs)
 
-            raise BadRequest('Wrong input data')
+            raise BadRequest(Code.VALIDATION_FAILED)
 
         return wrapped
 
