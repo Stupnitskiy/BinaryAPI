@@ -10,8 +10,8 @@ from src.lib.services import dropbox
 
 """
 TODO:
-    1) Standard all error responses from service.
-    2) Write unit tests.
+    1) Write unit tests.
+    2) Write documentation and comments.
 """
 
 binary_bp = Blueprint('binary_bp', __name__, url_prefix='/api/binary')

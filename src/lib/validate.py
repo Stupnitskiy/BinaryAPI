@@ -24,7 +24,6 @@ def wrap_validate(schema):
 
 
 def is_valid(dict_scheme, args, kwargs):
-    print(kwargs)
     form = update_dicts(
         args, kwargs,
         request.args,
