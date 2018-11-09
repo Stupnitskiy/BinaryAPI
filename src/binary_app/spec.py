@@ -16,6 +16,12 @@ def put():
     }
 
 
+def delete():
+    return {
+        'key': [is_key_exist],
+    }
+
+
 def get():
     return {
         'key': [is_key_exist],

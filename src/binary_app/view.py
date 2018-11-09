@@ -40,3 +40,10 @@ def put():
     result = dropbox.upload(encoded_data, key)
 
     return serialize.put(result)
+
+
+@binary_bp.route("/delete/<string:key>", methods=['DELETE'])
+@wrap_validate(spec.delete())
+def delete(key):
+    file = dropbox.delete(key)
+    return serialize.delete(file)

@@ -30,3 +30,16 @@ def test_get(client):
     data = response.data.decode()
 
     assert data == TEST_DATA
+
+
+def test_delete(client):
+    response = client.delete('/api/binary/delete/%s' % (TEST_KEY))
+    data = response.get_json()
+
+    expected_data = {
+        'key': TEST_KEY,
+        'size': len(TEST_DATA),
+    }
+
+    assert data.get('key') == expected_data['key']
+    assert data.get('size') == expected_data['size']

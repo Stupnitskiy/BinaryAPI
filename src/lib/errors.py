@@ -2,6 +2,7 @@ class Code():
     VALIDATION_FAILED = 1
     DOWNLOAD_FAILED = 2
     UPLOAD_FAILED = 3
+    DELETE_FAILED = 4
 
 
 class BadRequest(Exception):

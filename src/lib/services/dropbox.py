@@ -60,3 +60,18 @@ def upload(file, key, overwrite=False):
         raise BadRequest(Code.UPLOAD_FAILED)
 
     return res
+
+
+def delete(key):
+    """Delete a file.
+    Return the bytes of the file, or None if it doesn't exist.
+    """
+    path = '%s/%s' % (DROPBOX_PROJECT_PATH, key)
+    while '//' in path:
+        path = path.replace('//', '/')
+    try:
+        res = dbx.files_delete_v2(path)
+    except dropbox.exceptions.ApiError as err:
+        raise BadRequest(Code.DELETE_FAILED)
+    data = res.metadata
+    return data

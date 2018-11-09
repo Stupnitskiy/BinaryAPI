@@ -19,3 +19,7 @@ def get_list(collection):
 
 def put(data):
     return jsonify(_serialize_file(data))
+
+
+def delete(data):
+    return jsonify(_serialize_file(data))
