@@ -1,6 +1,3 @@
-from werkzeug.exceptions import HTTPException
-
-
 class Code():
     VALIDATION_FAILED = 1
     DOWNLOAD_FAILED = 2

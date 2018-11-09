@@ -11,6 +11,7 @@ _help_:
 	@echo make deps - install all project requirments
 	@echo make run - start the project server
 	@echo make deploy - start server with prod config
+	@echo make test - run tests 
 
 deps:
 	@if ! [ -d $(VIRTUALENV_DIR) ]; \
@@ -30,3 +31,7 @@ run:
 
 deploy: 
 	@echo 'Hypothetically here may be script for starting server with prod config'
+
+
+test:
+	$(VIRTUALENV_DIR)/bin/pytest
