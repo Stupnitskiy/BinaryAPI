@@ -7,7 +7,7 @@ Technologies:
 	- Python 3.6
 	- Dropbox API
 
-Application should be started by Makefile. The only requirement - ([PIP](https://pip.pypa.io/en/stable/installing/)) and ([virtualenv](https://virtualenv.pypa.io/en/latest/installation/)) must be installed on your workstation.
+Application should be started by Makefile. The only requirement - ([PIP]https://pip.pypa.io/en/stable/installing/) and ([virtualenv]https://virtualenv.pypa.io/en/latest/installation/) must be installed on your workstation.
 
 
 ### Install dependencies:
