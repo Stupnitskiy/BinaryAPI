@@ -8,11 +8,6 @@ from src.binary_app import spec
 from src.lib.validate import wrap_validate 
 from src.lib.services import dropbox
 
-"""
-TODO:
-    1) Write unit tests.
-    2) Write documentation and comments.
-"""
 
 binary_bp = Blueprint('binary_bp', __name__, url_prefix='/api/binary')
 
